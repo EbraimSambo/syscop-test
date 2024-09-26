@@ -31,7 +31,7 @@ export const Register = () => {
 
   return (
     <>
-      <div className='text-center text-[25px] font-bold mb-6'>Register</div>
+      <div className='text-center text-[25px] font-bold mb-6'>Criar Conta</div>
 
       <Formik
         initialValues={initialValues}
@@ -42,7 +42,7 @@ export const Register = () => {
             <div className='flex flex-col w-1/2 gap-4 mb-4'>
               <Input
                 variant='bordered'
-                label='Name'
+                label='Nome'
                 value={values.name}
                 isInvalid={!!errors.name && !!touched.name}
                 errorMessage={errors.name}
@@ -59,7 +59,7 @@ export const Register = () => {
               />
               <Input
                 variant='bordered'
-                label='Password'
+                label='Senha'
                 type='password'
                 value={values.password}
                 isInvalid={!!errors.password && !!touched.password}
@@ -68,7 +68,7 @@ export const Register = () => {
               />
               <Input
                 variant='bordered'
-                label='Confirm password'
+                label='Confirmar Senha'
                 type='password'
                 value={values.confirmPassword}
                 isInvalid={
@@ -81,18 +81,18 @@ export const Register = () => {
 
             <Button
               onPress={() => handleSubmit()}
-              variant='flat'
+              variant='solid'
               color='primary'>
-              Register
+              Criar Conta
             </Button>
           </>
         )}
       </Formik>
 
       <div className='font-light text-slate-400 mt-4 text-sm'>
-        Already have an account ?{" "}
+        Tenho uma conta ?{" "}
         <Link href='/login' className='font-bold'>
-          Login here
+          Entrar
         </Link>
       </div>
     </>

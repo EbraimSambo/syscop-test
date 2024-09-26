@@ -40,21 +40,21 @@ export const SidebarWrapper = () => {
         <div className="flex flex-col justify-between h-full">
           <div className={Sidebar.Body()}>
             <SidebarItem
-              title="Home"
+              title="Início"
               icon={<HomeIcon />}
               isActive={pathname === "/"}
               href="/"
             />
-            <SidebarMenu title="Main Menu">
+            <SidebarMenu title="Menu Principal">
               <SidebarItem
                 isActive={pathname === "/accounts"}
-                title="Accounts"
+                title="Agendamentos"
                 icon={<AccountsIcon />}
                 href="accounts"
               />
               <SidebarItem
                 isActive={pathname === "/payments"}
-                title="Payments"
+                title="Pagamentos"
                 icon={<PaymentsIcon />}
               />
               <CollapseItems

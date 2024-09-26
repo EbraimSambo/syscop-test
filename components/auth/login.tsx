@@ -29,7 +29,7 @@ export const Login = () => {
 
   return (
     <>
-      <div className='text-center text-[25px] font-bold mb-6'>Login</div>
+      <div className='text-center text-[25px] font-bold mb-6'>Acesse a sua conta</div>
 
       <Formik
         initialValues={initialValues}
@@ -49,7 +49,7 @@ export const Login = () => {
               />
               <Input
                 variant='bordered'
-                label='Password'
+                label='Senha'
                 type='password'
                 value={values.password}
                 isInvalid={!!errors.password && !!touched.password}
@@ -60,18 +60,18 @@ export const Login = () => {
 
             <Button
               onPress={() => handleSubmit()}
-              variant='flat'
+              variant='solid'
               color='primary'>
-              Login
+              Entrar
             </Button>
           </>
         )}
       </Formik>
 
       <div className='font-light text-slate-400 mt-4 text-sm'>
-        Don&apos;t have an account ?{" "}
+        Não tem uma conta  ?{" "}
         <Link href='/register' className='font-bold'>
-          Register here
+          Crie uma
         </Link>
       </div>
     </>
