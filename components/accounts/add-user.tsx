@@ -17,38 +17,50 @@ export const AddUser = () => {
     <div>
       <>
         <Button onPress={onOpen} color="primary">
-          Add User
+          Criar Agendamento
         </Button>
         <Modal
           isOpen={isOpen}
           onOpenChange={onOpenChange}
           placement="top-center"
+          size="4xl"
         >
           <ModalContent>
             {(onClose) => (
               <>
                 <ModalHeader className="flex flex-col gap-1">
-                  Add User
+                  Criar Agendamento
                 </ModalHeader>
                 <ModalBody>
-                  <Input label="Email" variant="bordered" />
-                  <Input label="First Name" variant="bordered" />
-                  <Input label="Last Name" variant="bordered" />
-                  <Input label="Phone Number" variant="bordered" />
+                  <div className="grid grid-cols-2 gap-4">
+                    <Input label="Primeiro Nome" size="sm" variant="bordered" />
+                    <Input label="Ultimo Nome" size="sm" variant="bordered" />
+                  </div>
+                  <div className="grid grid-cols-2 gap-4">
+                    <Input label="Email" size="sm" variant="bordered" />
+                    <Input label="Telemovel" size="sm" variant="bordered" />
+                  </div>
+                  <div className="grid grid-cols-2 gap-4">
+                    <Input label="Telemovel Opcional" size="sm" variant="bordered" />
+                    <Input
+                      label="Bilhete de identidade"
+                      variant="bordered"
+                      size="sm"
+                    />
+                  </div>
+                  <div className="">
+                    
+                  </div>
 
-                  <Input label="Password" type="password" variant="bordered" />
-                  <Input
-                    label="Confirm Password"
-                    type="password"
-                    variant="bordered"
-                  />
+
+
                 </ModalBody>
                 <ModalFooter>
                   <Button color="danger" variant="flat" onClick={onClose}>
-                    Close
+                    Cancelar
                   </Button>
                   <Button color="primary" onPress={onClose}>
-                    Add User
+                    Concluir
                   </Button>
                 </ModalFooter>
               </>

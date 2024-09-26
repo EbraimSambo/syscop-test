@@ -14,17 +14,17 @@ export const RenderCell = ({ user, columnKey }: Props) => {
   // @ts-ignore
   const cellValue = user[columnKey];
   switch (columnKey) {
-    case "name":
-      return (
-        <User
-          avatarProps={{
-            src: "https://i.pravatar.cc/150?u=a04258114e29026702d",
-          }}
-          name={cellValue}
-        >
-          {user.email}
-        </User>
-      );
+    // case "name":
+    //   return (
+    //     <User
+    //       avatarProps={{
+    //         src: "https://i.pravatar.cc/150?u=a04258114e29026702d",
+    //       }}
+    //       name={cellValue}
+    //     >
+    //       {user.email}
+    //     </User>
+    //   );
     case "role":
       return (
         <div>
@@ -49,7 +49,11 @@ export const RenderCell = ({ user, columnKey }: Props) => {
               : "warning"
           }
         >
-          <span className="capitalize text-xs">{cellValue}</span>
+          <span className="capitalize text-xs">
+            {cellValue === "active" && "activado"}
+            {cellValue === "paused" && "pausado"}
+            {cellValue === "vacation" && "verificar"}
+            </span>
         </Chip>
       );
 
@@ -57,14 +61,14 @@ export const RenderCell = ({ user, columnKey }: Props) => {
       return (
         <div className="flex items-center gap-4 ">
           <div>
-            <Tooltip content="Details">
+            <Tooltip content="Detatalhes">
               <button onClick={() => console.log("View user", user.id)}>
                 <EyeIcon size={20} fill="#979797" />
               </button>
             </Tooltip>
           </div>
           <div>
-            <Tooltip content="Edit user" color="secondary">
+            <Tooltip content="Editar" color="secondary">
               <button onClick={() => console.log("Edit user", user.id)}>
                 <EditIcon size={20} fill="#979797" />
               </button>
@@ -72,7 +76,7 @@ export const RenderCell = ({ user, columnKey }: Props) => {
           </div>
           <div>
             <Tooltip
-              content="Delete user"
+              content="Eliminar"
               color="danger"
               onClick={() => console.log("Delete user", user.id)}
             >

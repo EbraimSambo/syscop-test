@@ -15,26 +15,8 @@ import { AddUser } from "./add-user";
 export const Accounts = () => {
   return (
     <div className="my-10 px-4 lg:px-6 max-w-[95rem] mx-auto w-full flex flex-col gap-4">
-      <ul className="flex">
-        <li className="flex gap-2">
-          <HouseIcon />
-          <Link href={"/"}>
-            <span>Home</span>
-          </Link>
-          <span> / </span>{" "}
-        </li>
 
-        <li className="flex gap-2">
-          <UsersIcon />
-          <span>Users</span>
-          <span> / </span>{" "}
-        </li>
-        <li className="flex gap-2">
-          <span>List</span>
-        </li>
-      </ul>
-
-      <h3 className="text-xl font-semibold">All Accounts</h3>
+      <h3 className="text-xl font-semibold">Todos agendamentos</h3>
       <div className="flex justify-between flex-wrap gap-4 items-center">
         <div className="flex items-center gap-3 flex-wrap md:flex-nowrap">
           <Input
@@ -42,7 +24,7 @@ export const Accounts = () => {
               input: "w-full",
               mainWrapper: "w-full",
             }}
-            placeholder="Search users"
+            placeholder="Proucurar agendamento"
           />
           <SettingsIcon />
           <TrashIcon />
@@ -52,7 +34,7 @@ export const Accounts = () => {
         <div className="flex flex-row gap-3.5 flex-wrap">
           <AddUser />
           <Button color="primary" startContent={<ExportIcon />}>
-            Export to CSV
+            Exportar para CV
           </Button>
         </div>
       </div>

@@ -26,7 +26,7 @@ export const TableWrapper = () => {
             </TableColumn>
           )}
         </TableHeader>
-        <TableBody items={users}>
+        <TableBody items={users.slice(0,9)}>
           {(item) => (
             <TableRow>
               {(columnKey) => (
