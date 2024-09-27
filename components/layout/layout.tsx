@@ -19,7 +19,7 @@ export const Layout = ({ children }: Props) => {
   };
 
   return (
-    <SidebarContext.Provider
+    <SidebarContext.Provider 
       value={{
         collapsed: sidebarOpen,
         setCollapsed: handleToggleSidebar,
