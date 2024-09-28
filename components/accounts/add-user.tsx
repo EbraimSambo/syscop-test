@@ -8,7 +8,6 @@ import {
   ModalFooter,
   ModalHeader,
   useDisclosure,
-  DatePicker
 } from "@nextui-org/react";
 import React from "react";
 

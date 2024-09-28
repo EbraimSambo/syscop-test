@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
+    "@nextui-org/date-picker": "^2.1.8",
     "@nextui-org/react": "2.0.22",
     "apexcharts": "^3.35.5",
     "axios": "^1.7.7",
