@@ -1,11 +1,14 @@
+"use client"
 import { Image } from "@nextui-org/react";
 import { Divider } from "@nextui-org/divider";
+import { usePathname } from "next/navigation";
 
 interface Props {
   children: React.ReactNode;
 }
 
 export const AuthLayoutWrapper = ({ children }: Props) => {
+  const pathName = usePathname()
   return (
     <div className='flex h-screen'>
       <div className='flex-1 flex-col flex items-center justify-center p-6'>
@@ -23,6 +26,8 @@ export const AuthLayoutWrapper = ({ children }: Props) => {
         <Divider orientation='vertical' />
       </div>
 
+
+    {pathName != "/success/create" &&
       <div className='hidden md:flex flex-1 relative flex items-center justify-center p-6'>
         <div className='z-10'>
           <h1 className='font-bold text-[38px]'>Bem-Vindo a Sysconp</h1>
@@ -32,6 +37,7 @@ export const AuthLayoutWrapper = ({ children }: Props) => {
           </div>
         </div>
       </div>
+      }
     </div>
   );
 };

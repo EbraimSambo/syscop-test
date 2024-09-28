@@ -11,6 +11,7 @@ import React, { useCallback } from "react";
 import { DarkModeSwitch } from "./darkmodeswitch";
 import { useRouter } from "next/navigation";
 import { deleteAuthCookie } from "@/actions/auth.action";
+import { signOut } from "next-auth/react";
 
 export const UserDropdown = () => {
   const router = useRouter();
@@ -45,7 +46,7 @@ export const UserDropdown = () => {
         <DropdownItem key='team_settings'>Colegas</DropdownItem>
         <DropdownItem key='analytics'>Analises</DropdownItem>
         <DropdownItem key='help_and_feedback'>Ajuda e Feedback</DropdownItem>
-        <DropdownItem
+        <DropdownItem onClick={() => signOut()}
           key='logout'
           color='danger'
           className='text-danger'

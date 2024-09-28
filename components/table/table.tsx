@@ -10,8 +10,17 @@ import {
 import React from "react";
 import { columns, users } from "./data";
 import { RenderCell } from "./render-cell";
+import { useFetcherClient } from "@/hooks/swr";
+import { Appointments } from "@/interfaces";
+import LoaderTable from "../home/loader-table";
 
 export const TableWrapper = () => {
+  
+  const {data, isLoading, error} = useFetcherClient<Appointments[]>('appointments/all')
+
+  if(isLoading) return <LoaderTable />
+  console.log(data)
+
   return (
     <div className=" w-full flex flex-col gap-4">
       <Table aria-label="Example table with custom cells">
@@ -26,7 +35,7 @@ export const TableWrapper = () => {
             </TableColumn>
           )}
         </TableHeader>
-        <TableBody items={users.slice(0,9)}>
+        <TableBody items={data?.slice(0,9)}>
           {(item) => (
             <TableRow>
               {(columnKey) => (

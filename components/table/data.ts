@@ -1,6 +1,6 @@
 export const columns = [
    {name: 'Nomes', uid: 'name'},
-   {name: 'Permissão', uid: 'role'},
+   {name: 'Data de visita', uid: 'role'},
    {name: 'Estatutos', uid: 'status'},
    {name: 'Acções', uid: 'actions'},
 ];

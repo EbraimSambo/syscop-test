@@ -1,72 +1,52 @@
 "use client";
 
-import { createAuthCookie } from "@/actions/auth.action";
-import { LoginSchema } from "@/helpers/schemas";
-import { LoginFormType } from "@/helpers/types";
+import { useLogin } from "@/hooks/login";
 import { Button, Input } from "@nextui-org/react";
-import { Formik } from "formik";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useCallback } from "react";
+import Loading from "./loading";
+import ErrorMessage from "../errors/error-message";
 
 export const Login = () => {
-  const router = useRouter();
 
-  const initialValues: LoginFormType = {
-    email: "admin@acme.com",
-    password: "admin",
-  };
-
-  const handleLogin = useCallback(
-    async (values: LoginFormType) => {
-      // `values` contains email & password. You can use provider to connect user
-
-      await createAuthCookie();
-      router.replace("/");
-    },
-    [router]
-  );
-
+  const { onsubmit, form, isPadding, message } = useLogin()
   return (
     <>
       <div className='text-center text-[25px] font-bold mb-6'>Acesse a sua conta</div>
 
-      <Formik
-        initialValues={initialValues}
-        validationSchema={LoginSchema}
-        onSubmit={handleLogin}>
-        {({ values, errors, touched, handleChange, handleSubmit }) => (
-          <>
-            <div className='flex flex-col w-1/2 gap-4 mb-4'>
-              <Input
-                variant='bordered'
-                label='Email'
-                type='email'
-                value={values.email}
-                isInvalid={!!errors.email && !!touched.email}
-                errorMessage={errors.email}
-                onChange={handleChange("email")}
-              />
-              <Input
-                variant='bordered'
-                label='Senha'
-                type='password'
-                value={values.password}
-                isInvalid={!!errors.password && !!touched.password}
-                errorMessage={errors.password}
-                onChange={handleChange("password")}
-              />
-            </div>
+      <form onSubmit={form.handleSubmit(onsubmit)} className="max-w-[400px] w-full mx-auto " >
+          <div className='space-y-4 mb-4'>
+          {isPadding && <Loading isPadding={isPadding} />}
+          {message?.type === "error" && <ErrorMessage message={message.message} />}
+            <Input
+              variant='bordered'
+              label='Email'
+              type='email'
+              disabled={isPadding}
+              {...form.register("email")}
+              isInvalid={!!form.formState.errors.email}
+              errorMessage={form.formState.errors.email?.message}
+            />
+            <Input
+              variant='bordered'
+              label='Senha'
+              type='password'
+              {...form.register("password")}
+              isInvalid={!!form.formState.errors.password}
+              errorMessage={form.formState.errors.password?.message}
+            />
+          </div>
 
+          <div className="flex itmes-center justify-center">
             <Button
-              onPress={() => handleSubmit()}
+              disabled={isPadding}
+              isLoading={isPadding}
               variant='solid'
+              type="submit"
               color='primary'>
-              Entrar
+              Acessar
             </Button>
-          </>
-        )}
-      </Formik>
+          </div>
+      </form>
 
       <div className='font-light text-slate-400 mt-4 text-sm'>
         Não tem uma conta  ?{" "}

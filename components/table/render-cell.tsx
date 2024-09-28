@@ -4,9 +4,10 @@ import { DeleteIcon } from "../icons/table/delete-icon";
 import { EditIcon } from "../icons/table/edit-icon";
 import { EyeIcon } from "../icons/table/eye-icon";
 import { users } from "./data";
+import { Appointments } from "@/interfaces";
 
 interface Props {
-  user: (typeof users)[number];
+  user: Appointments;
   columnKey: string | React.Key;
 }
 
@@ -32,7 +33,7 @@ export const RenderCell = ({ user, columnKey }: Props) => {
             <span>{cellValue}</span>
           </div>
           <div>
-            <span>{user.team}</span>
+            <span>{user.visitTime.toString()}</span>
           </div>
         </div>
       );

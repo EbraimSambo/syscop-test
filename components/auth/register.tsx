@@ -1,93 +1,69 @@
 "use client";
 
-import { createAuthCookie } from "@/actions/auth.action";
-import { RegisterSchema } from "@/helpers/schemas";
-import { RegisterFormType } from "@/helpers/types";
-import { Button, Input } from "@nextui-org/react";
-import { Formik } from "formik";
+import { useRegister } from "@/hooks/register";
+import { Button, Input, Spinner } from "@nextui-org/react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useCallback } from "react";
+import ErrorMessage from "../errors/error-message";
+import Loading from "./loading";
 
 export const Register = () => {
-  const router = useRouter();
 
-  const initialValues: RegisterFormType = {
-    name: "Acme",
-    email: "admin@acme.com",
-    password: "admin",
-    confirmPassword: "admin",
-  };
-
-  const handleRegister = useCallback(
-    async (values: RegisterFormType) => {
-      // `values` contains name, email & password. You can use provider to register user
-
-      await createAuthCookie();
-      router.replace("/");
-    },
-    [router]
-  );
+  const { form, onsubmit, isPadding, message } = useRegister()
 
   return (
     <>
       <div className='text-center text-[25px] font-bold mb-6'>Criar Conta</div>
 
-      <Formik
-        initialValues={initialValues}
-        validationSchema={RegisterSchema}
-        onSubmit={handleRegister}>
-        {({ values, errors, touched, handleChange, handleSubmit }) => (
-          <>
-            <div className='flex flex-col w-1/2 gap-4 mb-4'>
-              <Input
-                variant='bordered'
-                label='Nome'
-                value={values.name}
-                isInvalid={!!errors.name && !!touched.name}
-                errorMessage={errors.name}
-                onChange={handleChange("name")}
-              />
-              <Input
-                variant='bordered'
-                label='Email'
-                type='email'
-                value={values.email}
-                isInvalid={!!errors.email && !!touched.email}
-                errorMessage={errors.email}
-                onChange={handleChange("email")}
-              />
-              <Input
-                variant='bordered'
-                label='Senha'
-                type='password'
-                value={values.password}
-                isInvalid={!!errors.password && !!touched.password}
-                errorMessage={errors.password}
-                onChange={handleChange("password")}
-              />
-              <Input
-                variant='bordered'
-                label='Confirmar Senha'
-                type='password'
-                value={values.confirmPassword}
-                isInvalid={
-                  !!errors.confirmPassword && !!touched.confirmPassword
-                }
-                errorMessage={errors.confirmPassword}
-                onChange={handleChange("confirmPassword")}
-              />
-            </div>
+      <form onSubmit={form.handleSubmit(onsubmit)} className="max-w-[400px] w-full mx-auto " >
+        <div className='space-y-4 mb-4'>
+          {isPadding && <Loading isPadding={isPadding} />}
+          {message?.type === "error" && <ErrorMessage message={message.message} />}
+          <Input
+            variant='bordered'
+            label='Nome'
+            disabled={isPadding}
+            {...form.register("name")}
+            isInvalid={!!form.formState.errors.name}
+            errorMessage={form.formState.errors.name?.message}
+          />
+          <Input
+            variant='bordered'
+            label='Email'
+            type='email'
+            {...form.register("email")}
+            disabled={isPadding}
+            isInvalid={!!form.formState.errors.email}
+            errorMessage={form.formState.errors.email?.message}
+          />
+          <Input
+            variant='bordered'
+            label='Senha'
+            type='password'
+            {...form.register("password")}
+            isInvalid={!!form.formState.errors.password}
+            errorMessage={form.formState.errors.password?.message}
+          />
+          <Input
+            variant='bordered'
+            label='Confirmar Senha'
+            type='password'
+            disabled={isPadding}
+            {...form.register("repeatPassword")}
+            isInvalid={!!form.formState.errors.repeatPassword}
+            errorMessage={form.formState.errors.repeatPassword?.message}
+          />
+        </div>
+        <div className="flex itmes-center justify-center">
+          <Button
+            disabled={isPadding}
+            variant='solid'
+            type="submit"
+            color='primary'>
+            Criar Conta
+          </Button>
+        </div>
 
-            <Button
-              onPress={() => handleSubmit()}
-              variant='solid'
-              color='primary'>
-              Criar Conta
-            </Button>
-          </>
-        )}
-      </Formik>
+      </form>
 
       <div className='font-light text-slate-400 mt-4 text-sm'>
         Tenho uma conta ?{" "}
