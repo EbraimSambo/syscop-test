@@ -20,7 +20,7 @@ export const SidebarWrapper = () => {
   const { collapsed, setCollapsed } = useSidebarContext();
 
   return (
-    <aside className="h-screen z-[20] sticky top-0"  >
+    <aside className="h-screen z-[20] sticky top-0 overflow-y-hidden"  >
       {collapsed ? (
         <div className={Sidebar.Overlay()} onClick={setCollapsed}  />
       ) : null}
