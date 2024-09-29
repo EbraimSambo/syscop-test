@@ -1,7 +1,7 @@
 export const columns = [
    {name: 'Nomes', uid: 'name'},
    {name: 'Data de visita', uid: 'role'},
-   {name: 'Estatutos', uid: 'status'},
+   {name: 'Estatuto', uid: 'status'},
    {name: 'Acções', uid: 'actions'},
 ];
 export const users = [

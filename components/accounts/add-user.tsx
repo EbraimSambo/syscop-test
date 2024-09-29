@@ -85,7 +85,7 @@ export const AddUser = () => {
                       />
                     </div>
                     <div className="grid grid-cols-2 gap-4">
-                      <DatePicker label="Data da visita" value={value} onChange={((*))} {...form.register("dataVisit")} />
+                      <DatePicker label="Data da visita" value={value}  {...form.register("dataVisit")} />
                       <TimeInput label="Hora da visita" {...form.register("visitTime")} />
                     </div>
 

@@ -1,3 +1,4 @@
+"use client"
 import {
   Link,
   Table,
@@ -13,15 +14,17 @@ import { RenderCell } from "./render-cell";
 import { useFetcherClient } from "@/hooks/swr";
 import { Appointments } from "@/interfaces";
 import LoaderTable from "../home/loader-table";
+import { useGetAppointmentsByUuid } from "@/hooks/nuqs";
 
 export const TableWrapper = () => {
   
   const {data, isLoading, error} = useFetcherClient<Appointments[]>('appointments/all')
-
+ const {setUuid} = useGetAppointmentsByUuid()
   if(error) return <div>ERRO DE CONEXAÃO</div>
   if(isLoading) return <LoaderTable />
   console.log(data)
 
+ 
   return (
     <div className=" w-full flex flex-col gap-4">
       <Table aria-label="Example table with custom cells">
@@ -41,7 +44,7 @@ export const TableWrapper = () => {
             <TableRow>
               {(columnKey) => (
                 <TableCell>
-                  {RenderCell({ user: item, columnKey: columnKey })}
+                  {RenderCell({ user: item, columnKey: columnKey,setUuid })}
                 </TableCell>
               )}
             </TableRow>

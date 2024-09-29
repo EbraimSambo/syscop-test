@@ -7,5 +7,6 @@ export interface Appointments {
     name: string
     phone: string
     uuid: string
+    status: boolean
     visitTime: Date | string
 }
