@@ -5,6 +5,7 @@ import { useLockedBody } from "../hooks/useBodyLock";
 import { NavbarWrapper } from "../navbar/navbar";
 import { SidebarWrapper } from "../sidebar/sidebar";
 import { SidebarContext } from "./layout-context";
+import ModalAppointments from "../appointments/modal-show-appointments";
 
 interface Props {
   children: React.ReactNode;
@@ -27,6 +28,7 @@ export const Layout = ({ children }: Props) => {
       <section className='flex'>
         <SidebarWrapper />
         <NavbarWrapper>{children}</NavbarWrapper>
+        <ModalAppointments />
       </section>
     </SidebarContext.Provider>
   );
