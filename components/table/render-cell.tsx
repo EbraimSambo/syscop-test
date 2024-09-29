@@ -11,11 +11,11 @@ import { Options } from "nuqs";
 interface Props {
   user: Appointments;
   columnKey: string | React.Key;
-  setUuid: <Shallow>(value: string | ((old: string | null) => string | null) | null, options?: Options<Shallow> | undefined) => Promise<URLSearchParams>
+  openModal: (id: string)=> void
 }
 
 
-export const RenderCell = ({ user, columnKey,setUuid }: Props) => {
+export const RenderCell = ({ user, columnKey,openModal }: Props) => {
   // @ts-ignore
   const cellValue = user[columnKey];
 
@@ -65,7 +65,7 @@ export const RenderCell = ({ user, columnKey,setUuid }: Props) => {
           <div className="flex items-center gap-4 ">
             <div>
               <Tooltip content="Detatalhes">
-                <button onClick={() => setUuid(user.uuid)}>
+                <button onClick={()=>openModal(user.uuid)}>
                   <EyeIcon size={20} fill="#979797" />
                 </button>
               </Tooltip>

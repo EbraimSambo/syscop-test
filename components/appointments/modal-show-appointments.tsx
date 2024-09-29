@@ -3,12 +3,12 @@ import { useGetAppointmentsByUuid } from "@/hooks/nuqs";
 import { Button, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosure } from "@nextui-org/react";
 
 const ModalAppointments =() =>{
-    const {isOpen, onOpenChange} = userModal()
+    const {isOpen, onOpenChange,closeModal} = userModal()
     const {uuid,setUuid} = useGetAppointmentsByUuid()
     if(!uuid) return null
     return (
       <>
-        <Modal size="4xl" isOpen={isOpen} onOpenChange={()=>onOpenChange(true)}>
+        <Modal size="4xl" isOpen={isOpen} onOpenChange={closeModal}>
           <ModalContent>
             {(onClose) => (
               <>
@@ -33,10 +33,10 @@ const ModalAppointments =() =>{
                   </p>
                 </ModalBody>
                 <ModalFooter>
-                  <Button color="danger" variant="light" onPress={()=>onOpenChange(false)}>
+                  <Button color="danger" variant="light" onPress={closeModal}>
                     Close
                   </Button>
-                  <Button color="primary" onPress={()=>onOpenChange(false)}>
+                  <Button color="primary" onPress={closeModal}>
                     Action
                   </Button>
                 </ModalFooter>

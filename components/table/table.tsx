@@ -15,12 +15,13 @@ import { useFetcherClient } from "@/hooks/swr";
 import { Appointments } from "@/interfaces";
 import LoaderTable from "../home/loader-table";
 import { useGetAppointmentsByUuid } from "@/hooks/nuqs";
+import { userModal } from "@/hooks/modal";
 
 export const TableWrapper = () => {
   
   const {data, isLoading, error} = useFetcherClient<Appointments[]>('appointments/all')
  const {setUuid} = useGetAppointmentsByUuid()
-
+ const {openModal} = userModal()
   if(error) return <div>ERRO DE CONEXAÃO</div>
   if(isLoading) return <LoaderTable />
   console.log(data)
@@ -45,7 +46,7 @@ export const TableWrapper = () => {
             <TableRow>
               {(columnKey) => (
                 <TableCell>
-                  {RenderCell({ user: item, columnKey: columnKey,setUuid })}
+                  {RenderCell({ user: item, columnKey: columnKey,openModal })}
                 </TableCell>
               )}
             </TableRow>

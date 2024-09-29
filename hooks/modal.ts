@@ -8,7 +8,8 @@ export function userModal(){
 
     const {uuid,setUuid} = useGetAppointmentsByUuid()
 
-    function openModal(){
+    function openModal(id: string){
+        setUuid(id)
         onOpenChange(true)
     }
     function closeModal(){
