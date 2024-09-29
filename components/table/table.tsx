@@ -18,6 +18,7 @@ export const TableWrapper = () => {
   
   const {data, isLoading, error} = useFetcherClient<Appointments[]>('appointments/all')
 
+  if(error) return <div>ERRO DE CONEXAÃO</div>
   if(isLoading) return <LoaderTable />
   console.log(data)
 

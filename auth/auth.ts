@@ -1,9 +1,10 @@
+import { BACKENDURL } from "@/config/axios";
 import { NextAuthOptions } from "next-auth";
 import { JWT } from "next-auth/jwt";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 async function refreshToken(token: JWT): Promise<JWT> {
-  const res = await fetch("http://localhost:4000/" + "auth/refresh", {
+  const res = await fetch(BACKENDURL+ "auth/refresh", {
     method: "POST",
     headers: {
       authorization: `Refresh ${token.backendTokens.refreshToken}`,
@@ -34,7 +35,7 @@ export const authOptions: NextAuthOptions = {
       async authorize(credentials, req) {
         if (!credentials?.username || !credentials?.password) return null;
         const { username, password } = credentials;
-        const res = await fetch("http://localhost:4000/"+ "auth/login", {
+        const res = await fetch(BACKENDURL+ "auth/login", {
           method: "POST",
           body: JSON.stringify({
             email: username,

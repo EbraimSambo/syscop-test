@@ -5,33 +5,33 @@ import { getToken } from "next-auth/jwt";
 export { default } from "next-auth/middleware";
 
 export async function middleware(request: NextRequest) {
-  const { pathname } = request.nextUrl;
-  const { nextUrl } = request
-  const token = await getToken({ req: request });
+  // const { pathname } = request.nextUrl;
+  // const { nextUrl } = request
+  // const token = await getToken({ req: request });
 
-  const isLogging = token 
+  // const isLogging = token 
 
-  console.log(token)
-  const isApiRoutes = nextUrl.pathname.includes(apiAuthPrefix)
-  const isAuthRoutes = authRoutes.includes(nextUrl.pathname)
-  const isProtectedRoutes = protectedRoutes.includes(nextUrl.pathname)
+  // console.log(token)
+  // const isApiRoutes = nextUrl.pathname.includes(apiAuthPrefix)
+  // const isAuthRoutes = authRoutes.includes(nextUrl.pathname)
+  // const isProtectedRoutes = protectedRoutes.includes(nextUrl.pathname)
 
-  if (isApiRoutes) {
-      return null
-  }
+  // if (isApiRoutes) {
+  //     return null
+  // }
 
-  if (isAuthRoutes) {
-      if (isLogging) {
-          return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));
-      }
-      return null
-  }
+  // if (isAuthRoutes) {
+  //     if (isLogging) {
+  //         return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));
+  //     }
+  //     return null
+  // }
 
-  if (!isLogging && isProtectedRoutes) {
-      return Response.redirect(new URL("/login", nextUrl))
-  }
+  // if (!isLogging && isProtectedRoutes) {
+  //     return Response.redirect(new URL("/login", nextUrl))
+  // }
 
-  return NextResponse.next();
+  // return NextResponse.next();
 }
 
 export const config = {
