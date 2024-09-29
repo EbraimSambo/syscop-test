@@ -16,13 +16,14 @@ import { Appointments } from "@/interfaces";
 import LoaderTable from "../home/loader-table";
 import { useGetAppointmentsByUuid } from "@/hooks/nuqs";
 import { userModal } from "@/hooks/modal";
+import ErrorLoading from "../errors/error-loader";
 
 export const TableWrapper = () => {
   
   const {data, isLoading, error} = useFetcherClient<Appointments[]>('appointments/all')
  const {setUuid} = useGetAppointmentsByUuid()
  const {openModal} = userModal()
-  if(error) return <div>ERRO DE CONEXAÃO</div>
+  if(error) return <ErrorLoading />
   if(isLoading) return <LoaderTable />
   console.log(data)
 
