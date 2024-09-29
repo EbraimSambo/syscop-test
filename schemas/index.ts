@@ -17,15 +17,17 @@ export const RegisterSchema = z.object({
 })
 
 export const AppointemntsSchema = z.object({
-    FristName: z.string().min(0,"Campo obrigatorio").nonempty("Campo obrigatorio"),
+    FristName: z.string().min(1,"Campo obrigatorio").nonempty("Campo obrigatorio"),
     LasTName: z.string().min(0,"Campo obrigatorio").nonempty("Campo obrigatorio"),
     email: z.string().min(0,"Campo obrigatorio").nonempty("Campo obrigatorio"),
     phone: z.string().min(0,"Campo obrigatorio").nonempty("Campo obrigatorio"),
-    visitTime: z.string().min(0,"Campo obrigatorio").nonempty("Campo obrigatorio"),
+    visitTime: z.string().min(0,"Campo obrigatorio").optional()
+    .or(z.literal('')),
     bi: z.string().min(0,"Campo obrigatorio").nonempty("Campo obrigatorio"),
-    dataVisit: z.string().min(0,"Campo obrigatorio").nonempty("Campo obrigatorio"),
+    dataVisit: z.date(),
     project: z.string().min(0,"Campo obrigatorio").nonempty("Campo obrigatorio"),
-    optionalPhone: z.string().min(0,"Campo obrigatorio").nonempty("Campo obrigatorio"),
+    optionalPhone: z.string().min(0,"Campo obrigatorio").optional()
+    .or(z.literal('')),
 })
 
 

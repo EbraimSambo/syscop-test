@@ -1,19 +1,27 @@
 import { useRegisterAppointments } from "@/hooks/register-appointments";
 import {
   Button,
+  DatePicker,
   Input,
   Modal,
   ModalBody,
   ModalContent,
   ModalFooter,
   ModalHeader,
+  TimeInput,
   useDisclosure,
 } from "@nextui-org/react";
 import React from "react";
-
+import Loading from "../auth/loading";
+import ErrorMessage from "../errors/error-message";
+import { parseDate, getLocalTimeZone } from "@internationalized/date";
+import { useDateFormatter } from "@react-aria/i18n";
 export const AddUser = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  const {form,isPadding,message,onsubmit} = useRegisterAppointments()
+  const { form, isPadding, message, onsubmit } = useRegisterAppointments()
+  const [value, setValue] = React.useState(parseDate("2024-04-04"));
+
+  let formatter = useDateFormatter({ dateStyle: "full" });
   return (
     <div>
       <>
@@ -35,25 +43,50 @@ export const AddUser = () => {
 
                 <form onSubmit={form.handleSubmit(onsubmit)}>
                   <ModalBody>
+                    {isPadding && <Loading isPadding={isPadding} />}
+                    {message?.type === "error" && <ErrorMessage message={message.message} />}
                     <div className="grid grid-cols-2 gap-4">
-                      <Input {...form.register("FristName")} label="Primeiro Nome" size="sm" variant="bordered" />
-                      <Input {...form.register("FristName")}  label="Ultimo Nome" size="sm" variant="bordered" />
+                      <Input {...form.register("FristName")}
+                        isInvalid={!!form.formState.errors.FristName}
+                        errorMessage={form.formState.errors.FristName?.message}
+                        label="Primeiro Nome" size="sm" variant="bordered" />
+                      <Input {...form.register("LasTName")}
+                        isInvalid={!!form.formState.errors.LasTName}
+                        errorMessage={form.formState.errors.LasTName?.message}
+                        label="Ultimo Nome" size="sm" variant="bordered" />
                     </div>
                     <div className="grid grid-cols-2 gap-4">
-                      <Input {...form.register("email")}  label="Email" size="sm" variant="bordered" />
-                      <Input {...form.register("phone")}  label="Telemovel" size="sm" variant="bordered" />
+                      <Input {...form.register("email")}
+                        isInvalid={!!form.formState.errors.email}
+                        errorMessage={form.formState.errors.email?.message}
+                        label="Email" size="sm" variant="bordered" />
+                      <Input {...form.register("phone")}
+                        isInvalid={!!form.formState.errors.phone}
+                        errorMessage={form.formState.errors.phone?.message}
+                        label="Telemovel" size="sm" variant="bordered" />
+                      <Input {...form.register("project")}
+                        isInvalid={!!form.formState.errors.project}
+                        errorMessage={form.formState.errors.bi?.message}
+                        label="Telemovel" size="sm" variant="bordered" />
                     </div>
                     <div className="grid grid-cols-2 gap-4">
-                      <Input {...form.register("optionalPhone")}  label="Telemovel Opcional" size="sm" variant="bordered" />
                       <Input
-                      {...form.register("bi")} 
+                        {...form.register("optionalPhone")}
+                        isInvalid={!!form.formState.errors.optionalPhone}
+                        errorMessage={form.formState.errors.optionalPhone?.message}
+                        label="Telemovel Opcional" size="sm" variant="bordered" />
+                      <Input
+                        {...form.register("bi")}
                         label="Bilhete de identidade"
                         variant="bordered"
                         size="sm"
+                        isInvalid={!!form.formState.errors.bi}
+                        errorMessage={form.formState.errors.bi?.message}
                       />
                     </div>
-                    <div className="">
-                    <DatePicker label="Birth date" className="max-w-[284px]" />
+                    <div className="grid grid-cols-2 gap-4">
+                      <DatePicker label="Data da visita" value={value} onChange={((*))} {...form.register("dataVisit")} />
+                      <TimeInput label="Hora da visita" {...form.register("visitTime")} />
                     </div>
 
                   </ModalBody>
@@ -62,7 +95,7 @@ export const AddUser = () => {
                     <Button color="danger" variant="flat" onClick={onClose}>
                       Cancelar
                     </Button>
-                    <Button color="primary" onPress={onClose}>
+                    <Button color="primary" type="submit">
                       Concluir
                     </Button>
                   </ModalFooter>

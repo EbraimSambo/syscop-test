@@ -43,7 +43,8 @@ export const Login = () => {
               variant='solid'
               type="submit"
               color='primary'>
-              Acessar
+                {isPadding && "processando..."}
+                {!isPadding && "Acessar"}
             </Button>
           </div>
       </form>

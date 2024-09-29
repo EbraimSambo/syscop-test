@@ -59,10 +59,10 @@ export function useLogin() {
             console.log(error)
 
             if (error.code === "ERR_NETWORK")
-                return setMessage({ message: "Erro de conexão, verifique a sua internete", type: "error" })
+                return setMessage({ message: "Erro de conexão, verifique a sua internete ou tente novamente", type: "error" })
 
             if (error.request.status === 0)
-                return setMessage({ message: "Erro de conexão, verifique a sua internete", type: "error" })
+                return setMessage({ message: "Erro de conexão, verifique a sua internete ou tente novamente", type: "error" })
 
             if (error.response.data.statusCode === 401)
                 return setMessage({ message: error?.response?.data?.message, type: "error" })

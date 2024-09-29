@@ -24,7 +24,6 @@ export function useRegisterAppointments(){
             LasTName: "",
             phone: "",
             project: "",
-            visitTime: ""
         }
     })
 
@@ -35,7 +34,7 @@ export function useRegisterAppointments(){
 
    function onsubmit(values: inferRegisterAppointments){
     const {email,FristName,LasTName,bi,dataVisit,phone,project,visitTime} = values
-
+    console.log(values)
     setIspadding(true)
     setMessage({message: "", type: "disabled"})
 
