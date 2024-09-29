@@ -1,5 +1,5 @@
 "use client"
-import { Image } from "@nextui-org/react"
+import { Button, Image } from "@nextui-org/react"
 
 
 
@@ -12,7 +12,10 @@ const ErrorLoading = () =>{
                     height={300}
                     width={300}
                 />
-                <h1 className="text-3xl">Upps Alguma coisa falhou</h1>
+                <h1 className="text-3xl font-bold">Upps Alguma coisa falhou</h1>
+                <div className="">
+                    <Button>Atualizar a pagina</Button>
+                </div>
             </div>
         </div>
     )
