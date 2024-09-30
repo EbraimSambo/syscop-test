@@ -11,6 +11,11 @@ import { UsersIcon } from "@/components/icons/breadcrumb/users-icon";
 import { SettingsIcon } from "@/components/icons/sidebar/settings-icon";
 import { TableWrapper } from "@/components/table/table";
 import { AddUser } from "./add-user";
+import { useFetcherClient } from "@/hooks/swr";
+import { Appointments } from "@/interfaces";
+import { useGetAppointmentsByUuid } from "@/hooks/nuqs";
+import ErrorLoading from "../errors/error-loader";
+import LoaderTable from "../home/loader-table";
 
 export const Accounts = () => {
   return (

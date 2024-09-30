@@ -18,6 +18,9 @@ import { useGetAppointmentsByUuid } from "@/hooks/nuqs";
 import { userModal } from "@/hooks/modal";
 import ErrorLoading from "../errors/error-loader";
 
+interface Props {
+  appointments: Appointments[];
+}
 export const TableWrapper = () => {
   
   const {data, isLoading, error} = useFetcherClient<Appointments[]>('appointments/all')
