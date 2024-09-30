@@ -1,11 +1,20 @@
+'use client'
 import { userModal } from "@/hooks/modal";
 import { useGetAppointmentsByUuid } from "@/hooks/nuqs";
+import { useFetcherClient } from "@/hooks/swr";
+import { Appointments } from "@/interfaces";
 import { Button, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosure } from "@nextui-org/react";
 
 const ModalAppointments =() =>{
     const {isOpen, onOpenChange,closeModal} = userModal()
     const {uuid,setUuid} = useGetAppointmentsByUuid()
     if(!uuid) return null
+
+    const {data, isLoading, error} = useFetcherClient<Appointments>(`'appointments/${uuid}`)
+    console.log(data)
+
+    if(error) return <div>Erro..</div>
+    if(isLoading) return <div>carregando..</div>
     return (
       <>
         <Modal size="4xl" isOpen={isOpen} onOpenChange={closeModal}>
