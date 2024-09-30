@@ -26,7 +26,7 @@ const ErrorLoading = () =>{
                     width={350}
                 />
                 <h1 className="text-3xl font-bold">Upps Alguma coisa falhou!</h1>
-                <p className="text-center font-bold text-xl max-w-[440px] w-full mx-auto ">
+                <p className="text-center font-bold text-base max-w-[440px] w-full mx-auto ">
                     Estamos a tentar resolver o erro,
                      os dados voltarão em breve, quando tudo estiver pronto...</p>
                 <div className="flex gap-4 items-center flex-wrap">

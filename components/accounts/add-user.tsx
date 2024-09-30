@@ -17,11 +17,13 @@ import ErrorMessage from "../errors/error-message";
 import { parseDate, getLocalTimeZone } from "@internationalized/date";
 import { useDateFormatter } from "@react-aria/i18n";
 export const AddUser = () => {
+   const [value, setValue] = React.useState(parseDate("2024-04-04"));
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const { form, isPadding, message, onsubmit } = useRegisterAppointments()
-  const [value, setValue] = React.useState(parseDate("2024-04-04"));
-
   let formatter = useDateFormatter({ dateStyle: "full" });
+ 
+
+  console.log(value && formatter.format(value.toDate(getLocalTimeZone())))
   return (
     <div>
       <>
@@ -85,7 +87,7 @@ export const AddUser = () => {
                       />
                     </div>
                     <div className="grid grid-cols-2 gap-4">
-                      <DatePicker label="Data da visita" value={value}  {...form.register("dataVisit")} />
+                      <DatePicker label="Data da visita" onChange={setValue} {...form.register("dataVisit")} />
                       <TimeInput label="Hora da visita" {...form.register("visitTime")} />
                     </div>
 
@@ -100,10 +102,6 @@ export const AddUser = () => {
                     </Button>
                   </ModalFooter>
                 </form>
-
-
-
-
               </>
             )}
           </ModalContent>
