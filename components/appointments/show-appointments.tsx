@@ -14,6 +14,7 @@ function ShowAppointments({uuid}:{uuid: string}) {
         <h2> <span className='font-bold'>Nome:</span>  {data?.name} </h2>
         <h2> <span className='font-bold'>Telefone:</span>  {data?.phone} </h2>
         <h2> <span className='font-bold'>Telefone:</span>  {data?.bi} </h2>
+        <h2> <span className='font-bold'>Telefone:</span>  {data?.visitTime.toLocaleString()} </h2>
         <h2> <span className='font-bold'>Dia da visita:</span>  {data?.dateVisit.toString()} </h2>
     </div>
   )
