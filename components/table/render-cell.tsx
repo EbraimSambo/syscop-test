@@ -38,7 +38,7 @@ export const RenderCell = ({ user, columnKey,openModal }: Props) => {
               <span>{cellValue}</span>
             </div>
             <div>
-              <span>{user.visitTime.toString()}</span>
+              <span>{user.dateVisit.toString()}</span>
             </div>
           </div>
         );

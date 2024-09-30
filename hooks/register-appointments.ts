@@ -13,7 +13,7 @@ interface Message{
 
 
 
-export function useRegisterAppointments(dateVisit: string){
+export function useRegisterAppointments(dateVisit: string, time: string){
     const form = useForm<inferRegisterAppointments>({
         resolver: zodResolver(AppointemntsSchema), 
         defaultValues: {
@@ -32,9 +32,9 @@ export function useRegisterAppointments(dateVisit: string){
 
 
    function onsubmit(values: inferRegisterAppointments){
-    const {email,FristName,LasTName,bi,dateVisit,phone,project,visitTime} = values
+    const {email,FristName,LasTName,bi,dateVisit : d,phone,project,visitTime} = values
     console.log(values)
-    console.log(dateVisit)
+    console.log({dateVisit},{d},{time})
     setIspadding(true)
     setMessage({message: "", type: "disabled"})
 
@@ -42,7 +42,7 @@ export function useRegisterAppointments(dateVisit: string){
         email,
         name: `${FristName} ${LasTName}`,
         phone,
-        visitTime: "wwewerere",
+        visitTime: time,
         bi,
         dateVisit: dateVisit
      })

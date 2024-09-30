@@ -16,23 +16,33 @@ import Loading from "../auth/loading";
 import ErrorMessage from "../errors/error-message";
 import { parseDate, getLocalTimeZone,  } from "@internationalized/date";
 import { useDateFormatter } from "@react-aria/i18n";
+import { useAtom } from "jotai";
+import { dateAtom } from "@/hooks/atoms";
 export const AddUser = () => {
 
-  const [dateVisit, setDateVisit] = React.useState('"2024-04-04"')
-   const [value, setValue] = React.useState(parseDate("2024-04-04"));
+
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
  
-  let formatter = useDateFormatter({ dateStyle: "medium" });
+  
  
+  const [dateVisit, setDateVisit] = useAtom(dateAtom)
+  const [timeVisit, setTimeVisit] = useAtom(dateAtom)
   
 
   const handleDateChange = (date: string) => {
     const parsedDate = parseDate(date);
-    console.log("Data selecionada:", parsedDate.toString());
     setDateVisit(parsedDate.toString())
+    console.log("Data selecionada:", parsedDate.toString());
+    return
   };
-  console.log(value && formatter.format(value.toDate(getLocalTimeZone())))
-  const { form, isPadding, message, onsubmit } = useRegisterAppointments(dateVisit)
+
+  const handleTimeChange = (time: string) => {
+    setTimeVisit(time)
+    console.log("Horário selecionado:", time); 
+    return
+  };
+
+  const { form, isPadding, message, onsubmit } = useRegisterAppointments(dateVisit,timeVisit)
   return (
     <div>
       <>
@@ -96,8 +106,8 @@ export const AddUser = () => {
                       />
                     </div>
                     <div className="grid grid-cols-2 gap-4">
-                      <DatePicker label="Data da visita"   onChange={(date) => handleDateChange(date.toString())} />
-                      <TimeInput label="Hora da visita" {...form.register("visitTime")} />
+                      <DatePicker label="Data da visita" {...form.register("dateVisit")}  onChange={(date) => handleDateChange(date.toString())} />
+                      <TimeInput label="Hora da visita" {...form.register("visitTime")} onChange={(time)=>handleTimeChange(time.toString())} />
                     </div>
 
                   </ModalBody>
