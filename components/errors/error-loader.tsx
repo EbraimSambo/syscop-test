@@ -21,7 +21,7 @@ const ErrorLoading = () =>{
                 <h1 className="text-3xl font-bold">Upps Alguma coisa falhou!</h1>
                 <p className="text-center font-bold text-xl">Estamos a tentar resolver o error, os dados voltaram em breve...</p>
                 <div className="">
-                    <Button isLoading={isLoading} onClick={reloadPage}>Atualizar a pagina</Button>
+                    <Button color="primary" isLoading={isLoading} onClick={reloadPage}>Atualizar a pagina</Button>
                 </div>
             </div>
         </div>
