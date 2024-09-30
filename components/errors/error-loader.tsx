@@ -22,8 +22,8 @@ const ErrorLoading = () =>{
             <div className="flex flex-col gap-3 items-center justify-center">
                 <Image 
                     src="/500-internal-server-error-animate.svg"
-                    height={400}
-                    width={400}
+                    height={350}
+                    width={350}
                 />
                 <h1 className="text-3xl font-bold">Upps Alguma coisa falhou!</h1>
                 <p className="text-center font-bold text-xl max-w-[440px] w-full mx-auto ">
