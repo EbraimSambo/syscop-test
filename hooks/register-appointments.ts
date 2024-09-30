@@ -13,13 +13,12 @@ interface Message{
 
 
 
-export function useRegisterAppointments(){
+export function useRegisterAppointments(dateVisit: string){
     const form = useForm<inferRegisterAppointments>({
         resolver: zodResolver(AppointemntsSchema), 
         defaultValues: {
             email: "",
             bi: "", 
-            dataVisit: "",
             FristName: "",
             LasTName: "",
             phone: "",
@@ -42,9 +41,9 @@ export function useRegisterAppointments(){
         email,
         name: `${FristName} ${LasTName}`,
         phone,
-        visitTime,
+        visitTime: "wwewerere",
         bi,
-        dataVisit
+        dataVisit: dateVisit
      })
 
      res.then((res)=>{
