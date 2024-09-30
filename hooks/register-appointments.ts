@@ -50,6 +50,8 @@ export function useRegisterAppointments(dateVisit: string, time: string){
      res.then((res)=>{
         console.log(res)
         // return window.location.assign("/success/create")
+        form.reset()
+        return setMessage({message: "Agendamento realizado com sucesso", type: "success"})
      }).catch((error)=>{
         console.log(error)
 

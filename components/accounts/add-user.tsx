@@ -18,6 +18,7 @@ import { parseDate, getLocalTimeZone, } from "@internationalized/date";
 import { useDateFormatter } from "@react-aria/i18n";
 import { useAtom } from "jotai";
 import { dateAtom } from "@/hooks/atoms";
+import SuccessMessage from "../message/success-message";
 export const AddUser = () => {
 
 
@@ -65,6 +66,7 @@ export const AddUser = () => {
                 <form onSubmit={form.handleSubmit(onsubmit)}>
                   <ModalBody>
                     {isPadding && <Loading isPadding={isPadding} />}
+                    {message?.type === "success" && <SuccessMessage message={message.message} />}
                     {message?.type === "error" && <ErrorMessage message={message.message} />}
                     <div className="grid grid-cols-2 gap-4">
                       <Input {...form.register("FristName")}
