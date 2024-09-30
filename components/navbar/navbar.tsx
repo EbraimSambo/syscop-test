@@ -25,7 +25,7 @@ export const NavbarWrapper = ({ children }: Props) => {
         <NavbarContent className="md:hidden">
           <BurguerButton />
         </NavbarContent>
-        <NavbarContent className="w-full max-md:hidden">
+        <NavbarContent className="max-w-[700px] w-full max-md:hidden">
           <Input
             startContent={<SearchIcon />}
             isClearable
@@ -41,7 +41,7 @@ export const NavbarWrapper = ({ children }: Props) => {
           justify="end"
           className="w-fit data-[justify=end]:flex-grow-0"
         >
-          <div className="flex items-center gap-2 max-md:hidden">
+          {/* <div className="flex items-center gap-2 max-md:hidden">
             <FeedbackIcon />
             <span>Feedback?</span>
           </div>
@@ -50,7 +50,7 @@ export const NavbarWrapper = ({ children }: Props) => {
 
           <div className="max-md:hidden">
             <SupportIcon />
-          </div>
+          </div> */}
 
           <NavbarContent>
             <UserDropdown />
