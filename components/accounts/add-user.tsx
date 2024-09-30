@@ -21,7 +21,7 @@ export const AddUser = () => {
   const [dateVisit, setDateVisit] = React.useState('"2024-04-04"')
    const [value, setValue] = React.useState(parseDate("2024-04-04"));
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  const { form, isPadding, message, onsubmit } = useRegisterAppointments(dateVisit)
+ 
   let formatter = useDateFormatter({ dateStyle: "medium" });
  
   
@@ -32,6 +32,7 @@ export const AddUser = () => {
     setDateVisit(parsedDate.toString())
   };
   console.log(value && formatter.format(value.toDate(getLocalTimeZone())))
+  const { form, isPadding, message, onsubmit } = useRegisterAppointments(dateVisit)
   return (
     <div>
       <>
