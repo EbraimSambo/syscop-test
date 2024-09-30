@@ -29,7 +29,7 @@ export const UserDropdown = () => {
             as='button'
             color='primary'
             size='md'
-            name="Jane"
+            name="EB"
           />
         </DropdownTrigger>
       </NavbarItem>
@@ -39,8 +39,8 @@ export const UserDropdown = () => {
         <DropdownItem
           key='profile'
           className='flex flex-col justify-start w-full items-start'>
-          <p>Belma</p>
-          <p>zoey@example.com</p>
+          <p>Ebraim Sambo</p>
+          <p>ebraimsambo@2.com</p>
         </DropdownItem>
         <DropdownItem key='settings'>Configuarações</DropdownItem>
         <DropdownItem key='team_settings'>Colegas</DropdownItem>

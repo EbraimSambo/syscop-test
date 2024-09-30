@@ -1,3 +1,4 @@
+"use client"
 import { useRegisterAppointments } from "@/hooks/register-appointments";
 import {
   Button,
@@ -59,7 +60,7 @@ export const AddUser = () => {
           <ModalContent>
             {(onClose) => (
               <>
-                <ModalHeader className="flex flex-col gap-1">
+                <ModalHeader className="flex flex-col gap-1 text-center">
                   Criar Agendamento
                 </ModalHeader>
 
@@ -93,7 +94,7 @@ export const AddUser = () => {
                       <Input {...form.register("project")}
                         isInvalid={!!form.formState.errors.project}
                         errorMessage={form.formState.errors.bi?.message}
-                        label="Telemovel" size="sm" variant="bordered" />
+                        label="Projecto" size="sm" variant="bordered" />
                       <Input
                         {...form.register("bi")}
                         label="Bilhete de identidade"
