@@ -14,7 +14,7 @@ import {
 import React from "react";
 import Loading from "../auth/loading";
 import ErrorMessage from "../errors/error-message";
-import { parseDate, getLocalTimeZone,  } from "@internationalized/date";
+import { parseDate, getLocalTimeZone, } from "@internationalized/date";
 import { useDateFormatter } from "@react-aria/i18n";
 import { useAtom } from "jotai";
 import { dateAtom } from "@/hooks/atoms";
@@ -22,12 +22,12 @@ export const AddUser = () => {
 
 
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
- 
-  
- 
+
+
+
   const [dateVisit, setDateVisit] = useAtom(dateAtom)
   const [timeVisit, setTimeVisit] = useAtom(dateAtom)
-  
+
 
   const handleDateChange = (date: string) => {
     const parsedDate = parseDate(date);
@@ -38,11 +38,11 @@ export const AddUser = () => {
 
   const handleTimeChange = (time: string) => {
     setTimeVisit(time)
-    console.log("Horário selecionado:", time); 
+    console.log("Horário selecionado:", time);
     return
   };
 
-  const { form, isPadding, message, onsubmit } = useRegisterAppointments(dateVisit,timeVisit)
+  const { form, isPadding, message, onsubmit } = useRegisterAppointments(dateVisit, timeVisit)
   return (
     <div>
       <>
@@ -85,17 +85,13 @@ export const AddUser = () => {
                         isInvalid={!!form.formState.errors.phone}
                         errorMessage={form.formState.errors.phone?.message}
                         label="Telemovel" size="sm" variant="bordered" />
+
+                    </div>
+                    <div className="grid grid-cols-2 gap-4">
                       <Input {...form.register("project")}
                         isInvalid={!!form.formState.errors.project}
                         errorMessage={form.formState.errors.bi?.message}
                         label="Telemovel" size="sm" variant="bordered" />
-                    </div>
-                    <div className="grid grid-cols-2 gap-4">
-                      <Input
-                        {...form.register("optionalPhone")}
-                        isInvalid={!!form.formState.errors.optionalPhone}
-                        errorMessage={form.formState.errors.optionalPhone?.message}
-                        label="Telemovel Opcional" size="sm" variant="bordered" />
                       <Input
                         {...form.register("bi")}
                         label="Bilhete de identidade"
@@ -106,8 +102,8 @@ export const AddUser = () => {
                       />
                     </div>
                     <div className="grid grid-cols-2 gap-4">
-                      <DatePicker label="Data da visita" {...form.register("dateVisit")}  onChange={(date) => handleDateChange(date.toString())} />
-                      <TimeInput label="Hora da visita" {...form.register("visitTime")} onChange={(time)=>handleTimeChange(time.toString())} />
+                      <DatePicker label="Data da visita" {...form.register("dateVisit")} onChange={(date) => handleDateChange(date.toString())} />
+                      <TimeInput label="Hora da visita" {...form.register("visitTime")} onChange={(time) => handleTimeChange(time.toString())} />
                     </div>
 
                   </ModalBody>

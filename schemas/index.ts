@@ -27,8 +27,8 @@ export const AppointemntsSchema = z.object({
     dateVisit: z.date().optional()
     .or(z.literal('')),
     project: z.string().min(0,"Campo obrigatorio").nonempty("Campo obrigatorio"),
-    optionalPhone: z.string().min(0,"Campo obrigatorio").optional()
-    .or(z.literal('')),
+    // optionalPhone: z.string().min(0,"Campo obrigatorio").optional()
+    // .or(z.literal('')),
 })
 
 
